@@ -2,7 +2,7 @@ version: '{build}-{branch}'
 os: Default Azure
 platform:
   - x64
-  
+
 init:
 - ps: |
     [Net.ServicePointManager]::SecurityProtocol = 'Ssl3, Tls, Tls11, Tls12'
@@ -18,13 +18,14 @@ install:
     choco install vagrant
     cd $env:APPVEYOR_BUILD_FOLDER
 - refreshenv
-#- set PATH=C:\Ruby24-x64\bin;%PATH%
+- set PATH=C:\Ruby24-x64\bin;%PATH%
+- ruby -v
 - vagrant -v
 - VBoxManage -v
 - ssh -V
-- ruby -v
 build_script:
 - ps: Test-NetConnection google.com -Port 80
+- make bundle
 #- vagrant up || ssh vagrant@127.0.0.1 -p 2222 -i .vagrant\machines\default\virtualbox\private_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -vvv -C "pwd"
 #- vagrant ssh -c "uname -a"
 test: off
