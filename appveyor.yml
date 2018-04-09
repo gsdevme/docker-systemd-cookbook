@@ -28,8 +28,6 @@ install:
 - set PATH=C:\Ruby24-x64\bin;%PATH%
 - vagrant -v
 - VBoxManage -v
-- ssh -V
-- ipconfig /all
 - ruby -v
 build_script:
 - ps: Test-NetConnection google.com -Port 80
