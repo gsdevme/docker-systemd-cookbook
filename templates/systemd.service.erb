@@ -1,0 +1,20 @@
+[Unit]
+Description=<%=@name%>
+After=docker.service
+Requires=docker.service
+ 
+[Service]
+TimeoutStartSec=<%=@timeout%>
+ExecStartPre=-/usr/bin/docker stop %n
+ExecStartPre=-/usr/bin/docker rm %n
+ExecStartPre=/usr/bin/docker pull <%=@image%>:<%=@tag%>
+
+ExecStart=/usr/bin/docker run --rm --name %n <%=@options.map{|k,v| "--#{k} #{v}"}.join(' ')%> <%=@image%>:<%=@tag%>
+
+ExecStop=/bin/docker stop %n
+ExecStopPost=/bin/docker rm -f %n
+
+ExecReload=/bin/docker restart %s
+
+[Install]
+WantedBy=multi-user.target

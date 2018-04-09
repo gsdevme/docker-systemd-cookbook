@@ -1,0 +1,17 @@
+---
+driver:
+  name: docker
+  privileged: true
+  volume:
+    - /var/run/docker.sock:/var/run/docker.sock
+
+platforms:
+  - name: centos-7
+    driver_config:
+      require_chef_omnibus: "13.1.31"
+      image: centos/systemd
+      run_command: /usr/sbin/init
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+        - systemctl enable sshd.service
+        - curl -LO https://omnitruck.chef.io/install.sh && sudo bash ./install.sh -v 13.1.31 && rm install.sh
