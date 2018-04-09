@@ -2,6 +2,7 @@
 driver:
   name: docker
   privileged: true
+  use_sudo: true
   volume:
     - /var/run/docker.sock:/var/run/docker.sock
 
