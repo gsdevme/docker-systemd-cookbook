@@ -10,6 +10,8 @@ sudo: required
 services: docker
 
 before_script:
+  # https://github.com/zuazo/kitchen-in-travis-native/issues/1#issuecomment-142455888
+  - sudo iptables -L DOCKER || sudo iptables -N DOCKER
   - make install
   - make bundle
 #  - make style
