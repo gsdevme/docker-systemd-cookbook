@@ -6,7 +6,7 @@ version          '0.1.0'
 
 maintainer 'Gavin Staniforth'
 
-source_url 'https://github.com/usemarkup/chef-docker-systemd'
+source_url 'https://github.com/gsdevme/docker-systemd-cookbook'
 
 supports 'centos'
 
