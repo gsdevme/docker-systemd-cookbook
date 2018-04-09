@@ -5,7 +5,8 @@ package 'docker'
 service "docker" do
   service_name "docker"
   supports enable: true, start: true, restart: true
-  action [:enable, :start]
+  action :nothing
+  #action [:enable, :start]
 end
 
 execute 'systemctl-reload' do
