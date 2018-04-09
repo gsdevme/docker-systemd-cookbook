@@ -1,0 +1,40 @@
+version: 2.0
+
+jobs:
+  deps:
+    working_directory: ~/home/docker-systemd
+    machine:
+      image: circleci/classic:latest
+      docker_layer_caching: true
+    steps:
+      - type: checkout
+      - run:
+          name: 'Install bundler'
+          command: |
+            make install
+      - run:
+          name: 'Install the gems'
+          command: |
+            make bundle
+      - save_cache:
+          key: docker-systemd-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/home/docker-systemd
+  centos7:
+    working_directory: ~/home/docker-systemd
+    machine:
+      image: circleci/classic:latest
+      docker_layer_caching: true
+    steps:
+      - restore_cache:
+          key: docker-systemd-{{ .Environment.CIRCLE_SHA1 }}
+      - run: bundle exec kitchen test
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - deps
+      - centos7:
+          requires:
+            - deps
