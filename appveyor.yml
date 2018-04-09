@@ -13,10 +13,10 @@ init:
 - ps: |
     mkdir C:\downloads | Out-Null
     cd C:\downloads
-    Start-FileDownload "https://releases.hashicorp.com/vagrant/1.7.2/vagrant_1.7.2.msi"
-    Start-Process -FilePath "msiexec.exe" -ArgumentList "/a vagrant_1.7.2.msi /qb TARGETDIR=C:\Vagrant-1.7.2" -Wait
-    Start-FileDownload "http://download.virtualbox.org/virtualbox/4.3.12/VirtualBox-4.3.12-93733-Win.exe"
-    Start-Process -FilePath "VirtualBox-4.3.12-93733-Win.exe" -ArgumentList "-silent -logging -msiparams INSTALLDIR=C:\VBox-4.3.12" -Wait
+    Start-FileDownload "https://releases.hashicorp.com/vagrant/2.0.3/vagrant_2.0.3_x86_64.msi"
+    Start-Process -FilePath "msiexec.exe" -ArgumentList "/a vagrant_1.7.2.msi /qb TARGETDIR=C:\Vagrant-2.0.3" -Wait
+    Start-FileDownload "https://download.virtualbox.org/virtualbox/5.2.8/VirtualBox-5.2.8-121009-Win.exe"
+    Start-Process -FilePath "VirtualBox-5.2.8-121009-Win.exe" -ArgumentList "-silent -logging -msiparams INSTALLDIR=C:\VBox-5.2.8" -Wait
     cd $env:APPVEYOR_BUILD_FOLDER
 - ps: |
     While ((Test-NetConnection google.com -Port 80 -InformationLevel Quiet) -ne "True") {
@@ -24,7 +24,7 @@ init:
         Start-Sleep 1
     }
 install:
-- set PATH=C:\Vagrant-1.7.2\HashiCorp\Vagrant\bin;C:\VBox-4.3.12;%PATH%
+- set PATH=C:\Vagrant-2.0.3\HashiCorp\Vagrant\bin;C:\VBox-5.2.8;%PATH%
 - set PATH=C:\Ruby24-x64\bin;%PATH%
 - vagrant -v
 - VBoxManage -v
