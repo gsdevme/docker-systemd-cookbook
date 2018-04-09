@@ -28,7 +28,7 @@ jobs:
     steps:
       - restore_cache:
           key: docker-systemd-{{ .Environment.CIRCLE_SHA1 }}
-      - run: bundle exec kitchen test
+      - run: KITCHEN_LOCAL_YAML=.kitchen.docker.yml bundle exec kitchen test
 
 workflows:
   version: 2
