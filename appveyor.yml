@@ -16,6 +16,7 @@ install:
 - ps: |
     choco install virtualbox
     choco install vagrant
+    choco install make
     cd $env:APPVEYOR_BUILD_FOLDER
 - refreshenv
 - set PATH=C:\Ruby24-x64\bin;%PATH%
@@ -25,7 +26,7 @@ install:
 - ssh -V
 build_script:
 - ps: Test-NetConnection google.com -Port 80
-- ps: make bundle
+- make bundle
 #- vagrant up || ssh vagrant@127.0.0.1 -p 2222 -i .vagrant\machines\default\virtualbox\private_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -vvv -C "pwd"
 #- vagrant ssh -c "uname -a"
 test: off
