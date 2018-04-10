@@ -8,7 +8,7 @@ gem 'knife-solo'
 gem 'inspec'
 gem 'test-kitchen'
 gem 'kitchen-vagrant'
-gem 'kitchen-docker'
+gem 'kitchen-dokken'
 gem 'kitchen-inspec'
 
 gem 'cookstyle'

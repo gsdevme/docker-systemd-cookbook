@@ -1,0 +1,11 @@
+sudo: required
+dist: trusty
+
+install: make bundle
+services: docker
+
+before_script:
+  - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
+
+script: bundle exec kitchen verify
+
