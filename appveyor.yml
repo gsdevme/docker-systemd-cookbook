@@ -16,7 +16,7 @@ install:
 - ps: |
     choco install virtualbox
     choco install vagrant
-    choco install make
+    choco install make -y
     cd $env:APPVEYOR_BUILD_FOLDER
 - refreshenv
 - set PATH=C:\Ruby24-x64\bin;%PATH%
