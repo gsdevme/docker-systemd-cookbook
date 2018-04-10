@@ -16,7 +16,6 @@ install:
 - ps: |
     choco install virtualbox
     choco install vagrant
-    choco install make -y
     cd $env:APPVEYOR_BUILD_FOLDER
 - refreshenv
 - set PATH=C:\Ruby24-x64\bin;%PATH%
@@ -27,7 +26,7 @@ install:
 
 build_script:
 - ps: Test-NetConnection google.com -Port 80
-- make bundle
-- make kitchen
+- bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --retry=3
+- bundle exec kitchen test
 
 test: off
