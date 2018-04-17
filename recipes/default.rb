@@ -5,8 +5,7 @@ package 'docker'
 service "docker" do
   service_name "docker"
   supports enable: true, start: true, restart: true
-  action :nothing
-  #action [:enable, :start]
+  action [:enable, :start]
 end
 
 execute 'systemctl-reload' do
@@ -39,9 +38,6 @@ node['docker-systemd']['containers'].each do |name, container_options|
     supports enable: true, disable: true, start: true, restart: true
     action :nothing
   end
-
-puts container_options
-
 
   if container_options['start']
     ruby_block "service control (#{name})" do
