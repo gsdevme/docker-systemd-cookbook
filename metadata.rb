@@ -10,7 +10,7 @@ source_url 'https://github.com/gsdevme/docker-systemd-cookbook'
 
 supports 'centos'
 
-chef_version '>= 12.6' if respond_to?(:chef_version)
+chef_version '>= 12.22' if respond_to?(:chef_version)
 
-depends 'yum-docker'
+depends 'docker'
 depends 'compat_resource'

@@ -1,6 +1,4 @@
-include_recipe 'yum-docker'
-
-package 'docker'
+docker_installation_script 'default'
 
 service "docker" do
   service_name "docker"

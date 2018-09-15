@@ -11,7 +11,7 @@ ExecStartPre=/usr/bin/docker create --rm --name <%=@name%> <%=@options.map{|k,v|
 ExecStart=/usr/bin/docker start <%=@name%>
 
 ExecStop=/bin/docker stop <%=@name%>
-ExecStopPost=/bin/docker rm -f <%=@name%>
+#ExecStopPost=/bin/docker rm -f <%=@name%>
 
 ExecReload=/bin/docker restart <%=@name%>
 
